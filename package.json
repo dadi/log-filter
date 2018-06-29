@@ -1,0 +1,41 @@
+{
+  "name": "@dadi/log-filter",
+  "description": "Filter sensitive parameters from log files",
+  "version": "0.0.1",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "format": "prettier --no-semi --single-quote --write '{lib,test}/*.js' && standard --fix '{lib,test}/*.js'",
+    "test": "standard lib/*.js && NODE_ENV=test ./node_modules/.bin/istanbul cover --report cobertura --report text --report html --report lcov ./node_modules/.bin/_mocha test",
+    "precommit": "lint-staged",
+    "posttest": "./scripts/coverage.js"
+  },
+  "lint-staged": {
+    "lib/*.js": [
+      "prettier --no-semi --single-quote --write",
+      "standard --fix",
+      "git add"
+    ]
+  },
+  "standard": {
+    "env": [
+      "mocha"
+    ]
+  },
+  "keywords": [],
+  "author": "jl@dadi.co",
+  "license": "ISC",
+  "devDependencies": {
+    "coveralls": "^3.0.1",
+    "istanbul": "^1.1.0-alpha.1",
+    "lint-staged": "^7.2.0",
+    "mocha": "^5.2.0",
+    "prettier": "^1.13.6",
+    "should": "^13.2.1",
+    "standard": "^11.0.1"
+  },
+  "dependencies": {}
+}
