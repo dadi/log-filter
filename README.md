@@ -7,3 +7,27 @@
 [![Build Status](https://travis-ci.org/dadi/log-filter.svg?branch=master)](https://travis-ci.org/dadi/log-filter)
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com/)
 
+## Install
+
+```
+npm i @dadi/log-filter
+```
+
+## Filter querystring parameters
+
+```js
+const LogFilter = require('@dadi/log-filter')
+
+let req = {
+  url: '/profile?username=ed&password=octopus'
+}
+
+let filter = ['password']
+
+let logFilter = new LogFilter(req, filter)
+let output = logFilter.filterPath()
+
+// produces /profile?username=ed&password=%5BFILTERED%5D
+```
+
+
