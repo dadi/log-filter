@@ -17,7 +17,7 @@ function generateMockRequestAndResponse (statusCode, forwarded, ip, url) {
       remoteAddress: ip || '8.8.8.8'
     },
     headers: {
-      host: 'http://0.0.0.0',
+      host: '0.0.0.0',
       referer: 'http://google.com',
       'user-agent':
         'Mozilla/5.0 (Windows NT x.y; WOW64; rv:10.0) Gecko/20100101 Firefox/10.0'
@@ -47,6 +47,20 @@ function generateMockRequestAndResponse (statusCode, forwarded, ip, url) {
 }
 
 describe('Filtered parameters', function () {
+  it('should leave path as is when there is no querystring', function (done) {
+    let testHttp = generateMockRequestAndResponse()
+
+    testHttp.req.url = '/'
+
+    logFilter = new LogFilter(testHttp.req, ['password'])
+
+    let output = logFilter.filterPath()
+
+    output.should.eql(testHttp.req.url)
+
+    done()
+  })
+
   it('should remove sensitive parameters from querystring', function (done) {
     let testHttp = generateMockRequestAndResponse()
     testHttp.req.url = testHttp.req.url + '?username=ed&password=octopus'
