@@ -11,8 +11,7 @@
     "format": "prettier --no-semi --single-quote --write '{lib,test}/*.js' && standard --fix '{lib,test}/*.js'",
     "test": "standard lib/*.js && env NODE_ENV=test ./node_modules/.bin/nyc --reporter=lcov ./node_modules/mocha/bin/_mocha test && ./node_modules/.bin/nyc report",
     "precommit": "lint-staged",
-    "posttest": "./scripts/coverage.js",
-    "travis-deploy-once": "travis-deploy-once"
+    "posttest": "./scripts/coverage.js"
   },
   "lint-staged": {
     "lib/*.js": [
@@ -36,8 +35,7 @@
     "nyc": "^14.1.0",
     "prettier": "^1.13.6",
     "should": "^13.2.1",
-    "standard": "^11.0.1",
-    "travis-deploy-once": "^5.0.1"
+    "standard": "^11.0.1"
   },
   "dependencies": {},
   "repository": {
